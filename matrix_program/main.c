@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Function to generate a random real number between 0 and 1
+// Function  for generate a random real number between 0 and 1
 double randomReal() {
     return (double)rand() / RAND_MAX;
 }
 
-// Function to initialize the matrix M with random values
-void initializeMatrix(int n, double M[][n]) {
+// Function for  initialize the matrix M with random values
+void initialize_matrix(int n, double M[][n]) {
     for (int i = 0; i < n; i++) {
         double sum = 0.0;
         for (int j = 0; j < n; j++) {
@@ -23,7 +23,7 @@ void initializeMatrix(int n, double M[][n]) {
 }
 
 // Function to print a matrix
-void printMatrix(int n, double matrix[][n]) {
+void print_matrix(int n, double matrix[][n]) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             printf("%f ", matrix[i][j]);
@@ -33,7 +33,7 @@ void printMatrix(int n, double matrix[][n]) {
 }
 
 // Function to perform matrix multiplication: result = A * B
-void matrixMultiplication(int n, double A[][n], double B[], double result[]) {
+void matrix_multiplication(int n, double A[][n], double B[], double result[]) {
     for (int i = 0; i < n; i++) {
         result[i] = 0.0;
         for (int j = 0; j < n; j++) {
@@ -60,25 +60,24 @@ int main() {
         return 1;
     }
 
-    // Initialize matrix M with random values
+    //matrix M with random values
     double M[n][n];
-    initializeMatrix(n, M);
+    initialize_matrix(n, M);
 
-    // Print matrix M
     printf("Matrix M:\n");
-    printMatrix(n, M);
+    print_matrix(n, M);
 
-    // Initialize vector R with equal components
+    // Initializxing vector R with equal components
     double R[n];
     for (int i = 0; i < n; i++) {
         R[i] = 1.0 / n;
     }
 
-    // Perform matrix multiplication R'R = (MM^{pp})R'
+    // Performing the matrix multiplication R'R = (MM^{pp})R'
     for (int i = 0; i < p; i++) {
         double temp[n];
-        matrixMultiplication(n, M, R, temp);
-        matrixMultiplication(n, M, temp, R);
+        matrix_multiplication(n, M, R, temp);
+        matrix_multiplication(n, M, temp, R);
     }
 
     // Print the final result R'
